@@ -6,5 +6,13 @@ type User struct{
 	Id			bson.ObjectId	
 	Name		string			
 	Email		string			
-	Password	string			
+	Password	string		
+		
+}
+
+type Post struct{
+	Id 			bson.ObjectId
+	Caption		string
+	ImageURL	string
+	time		string
 }

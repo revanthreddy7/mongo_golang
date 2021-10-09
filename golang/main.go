@@ -12,6 +12,8 @@ func main(){
 	r.GET("/user/:id",uc.GetUser )
 	r.POST("/user", uc.CreateUser )
 	r.DELETE("/user/:id",uc.DeleteUser )
+	r.NEWPOST("/posts", uc.CreatePost )
+	r.GETPOST("/posts/:id", uc.GetPost)
 	http.ListenAndServe("localhost:9000" ,r)
 
 }
