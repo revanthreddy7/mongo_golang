@@ -149,3 +149,21 @@ func (uc PostController) GetPost (w http.ResponseWriter,r *http.Request, p httpr
 	fmt.Fprintf(w, "%s\n", uj)
 
 }
+
+
+func (uc PostController) DeletePost (w http.ResponseWriter,r *http.Request, p httprouter.Params){
+	id :=p.ByName("id")
+
+	if !bson.IsObjectIdHex(id){
+		w.WriteHeader(404)
+		return
+	}
+
+	oid := bson.ObjectIdHex(id)
+
+	if err := uc.session.DB("mongo_golang").C("posts").RemoveId(oid); err != nil{
+		w.WriteHeader(404)
+	}
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w,"Deleted Post",oid,"\n")
+}
